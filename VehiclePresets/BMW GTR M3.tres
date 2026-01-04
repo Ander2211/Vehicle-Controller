@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="VehiclePreset" load_steps=3 format=3 uid="uid://dkn3u0ffax0r3"]
+
+[ext_resource type="Script" uid="uid://swqjnnwjvln" path="res://Scripts/Vehicle/VehiclePresetResource.gd" id="1_cpclt"]
+
+[sub_resource type="Curve" id="Curve_cpclt"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.4, 0.9), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(0.9, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.85), 0.0, 0.0, 0, 0]
+point_count = 5
+metadata/_snap_enabled = true
+metadata/_snap_count = 2
+
+[resource]
+script = ExtResource("1_cpclt")
+max_steering_angle = 40.0
+max_torque = 480.0
+max_rpm = 7200.0
+idle_rpm = 1100.0
+torque_curve = SubResource("Curve_cpclt")
+motor_moment = 0.1
+final_drive = 11.55
+reverse_ratio = 3.5
+shift_time = 0.08
+gear_inertia = 0.005
+vehicle_mass = 1120.0
+contact_patch = 0.3
+wheel_to_body_torque_multiplier = 0.5
+longitudinal_grip_ratio = {
+"Dirt": 0.5,
+"Grass": 0.5,
+"Road": 1.0
+}
+front_tire_radius = 0.86
+front_tire_width = 700.0
+rear_tire_radius = 0.86
+rear_tire_width = 700.0
+coefficient_of_drag = 0.25
+frontal_area = 1.5
+metadata/_custom_type_script = "uid://swqjnnwjvln"

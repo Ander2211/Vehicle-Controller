@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cblniwj1fkr3l"]
+
+[ext_resource type="Texture2D" uid="uid://b7e5c418kuyco" path="res://Assets2/Inputs/Keyboard/T_0_Key_Dark.png" id="2_udyqh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_14pvc"]
+font_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="InputTemplate" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 0
+
+[node name="Action" type="Label" parent="."]
+layout_mode = 2
+text = "NULL"
+label_settings = SubResource("LabelSettings_14pvc")
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="."]
+modulate = Color(0.95686275, 0.54901963, 0.023529412, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_udyqh")
+expand_mode = 1

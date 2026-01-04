@@ -1,0 +1,835 @@
+[gd_scene load_steps=79 format=3 uid="uid://b1yj7jkqwf0y2"]
+
+[ext_resource type="Script" uid="uid://dfjxc7vq3nagd" path="res://Scripts/Vehicle/VehicleTemplate.gd" id="1_8jcdi"]
+[ext_resource type="Shader" uid="uid://la35wdc6hqal" path="res://Assets/Shader/Grid.gdshader" id="2_pb1xm"]
+[ext_resource type="Script" uid="uid://d36jo3cocim41" path="res://Scripts/Vehicle/VehicleWheel.gd" id="3_kfiem"]
+[ext_resource type="Texture2D" uid="uid://o211ffcyrwrv" path="res://Assets/UI/particle_sprite_smoke.webp" id="3_v6nfp"]
+[ext_resource type="Script" uid="uid://d2v53oqc4e0xn" path="res://Scripts/Vehicle/VehicleInputController.gd" id="4_u2hpp"]
+[ext_resource type="Script" uid="uid://by4hbssfh7p4l" path="res://Scripts/Vehicle/ExtraFeatures.gd" id="5_2572m"]
+[ext_resource type="Shader" uid="uid://3c1a5xgv371t" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="5_hrshh"]
+[ext_resource type="Script" uid="uid://c51rtjs01qne2" path="res://Scripts/Debug/DebugDraw.gd" id="6_hw4k4"]
+[ext_resource type="Shader" uid="uid://hreyqns70034" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="6_orc58"]
+[ext_resource type="Script" uid="uid://bxkhdog63yeu4" path="res://Scripts/UI/VehicleVisualController.gd" id="6_ub5kx"]
+[ext_resource type="Texture2D" uid="uid://ddhpau2mjy2vw" path="res://Assets/UI/T_VFX_Trail223.png" id="7_a87fv"]
+[ext_resource type="Script" uid="uid://d3tp1j6cxouud" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="8_snnsh"]
+[ext_resource type="AudioStream" uid="uid://de5blibmx7gr5" path="res://Assets/Fx/Dummy/startup.wav" id="9_kfsp2"]
+[ext_resource type="Script" uid="uid://e8k70hik2jv8" path="res://Scripts/Vehicle/VehicleSoundController.gd" id="9_wckek"]
+[ext_resource type="AudioStream" uid="uid://cf22wmhbsnqvu" path="res://Assets/Fx/Dummy/idle.wav" id="10_i13aa"]
+[ext_resource type="AudioStream" uid="uid://diotrljeenv7k" path="res://Assets/Fx/Dummy/low_on.wav" id="11_63l1q"]
+[ext_resource type="AudioStream" uid="uid://bbkpxa7loeal1" path="res://Assets/Fx/Dummy/low_off.wav" id="12_gbv6x"]
+[ext_resource type="AudioStream" uid="uid://4ohdpqb0eikr" path="res://Assets/Fx/Dummy/med_on.wav" id="13_l6ror"]
+[ext_resource type="AudioStream" uid="uid://d0est6swuvge" path="res://Assets/Fx/Dummy/med_off.wav" id="14_mn077"]
+[ext_resource type="AudioStream" uid="uid://c3voy6dib3gom" path="res://Assets/Fx/Dummy/high_on.wav" id="15_6mq5l"]
+[ext_resource type="AudioStream" uid="uid://bhaycppxc76mp" path="res://Assets/Fx/Dummy/high_off.wav" id="16_fq8oo"]
+[ext_resource type="AudioStream" uid="uid://bpe3eml5j1cem" path="res://Assets/Fx/Dummy/maxRPM.wav" id="17_omj6t"]
+[ext_resource type="AudioStream" uid="uid://bcf0drausqc7n" path="res://Assets/Fx/Dummy/muffler_on_1.wav" id="18_2qmxc"]
+[ext_resource type="AudioStream" uid="uid://densimaxpuexo" path="res://Assets/Fx/Dummy/muffler_off_1.wav" id="19_dkvfb"]
+[ext_resource type="AudioStream" uid="uid://bs3wd88jyceqw" path="res://Assets/Fx/Dummy/muffler_off_2.wav" id="20_qmyht"]
+[ext_resource type="AudioStream" uid="uid://b66yr8ftd6vaa" path="res://Assets/Fx/Dummy/muffler_off_3.wav" id="21_u552y"]
+[ext_resource type="AudioStream" uid="uid://d3al4dnka3k6b" path="res://Assets/Fx/Dummy/muffler_off_4.wav" id="22_8rc6v"]
+[ext_resource type="AudioStream" uid="uid://dkcx6vf5e74a4" path="res://Assets/Fx/Dummy/muffler_off_5.wav" id="23_3sbui"]
+[ext_resource type="AudioStream" uid="uid://b1j01d4lk8wks" path="res://Assets/Fx/Dummy/muffler_on_2.wav" id="24_kto56"]
+[ext_resource type="AudioStream" uid="uid://btq3hp7wj42w8" path="res://Assets/Fx/Dummy/muffler_on_3.wav" id="25_u0c6q"]
+[ext_resource type="AudioStream" uid="uid://bkftoc1wfo8hk" path="res://Assets/Fx/Dummy/muffler_on_4.wav" id="26_gug5u"]
+[ext_resource type="AudioStream" uid="uid://b41qwg50kw0hk" path="res://Assets/Fx/Dummy/muffler_on_5.wav" id="27_n8ibd"]
+[ext_resource type="AudioStream" uid="uid://cdst7guayf8vj" path="res://Assets/Fx/Dummy/shift.wav" id="28_3sbui"]
+[ext_resource type="AudioStream" uid="uid://c85m6mtrmkih8" path="res://Assets/Fx/Dummy/short_shot_1.wav" id="31_3sbui"]
+[ext_resource type="AudioStream" uid="uid://conna3o5yylwf" path="res://Assets/Fx/Dummy/long_shot_1.wav" id="32_kto56"]
+[ext_resource type="AudioStream" uid="uid://hhh8nbhgrair" path="res://Assets/Fx/Dummy/supercharger_on.wav" id="33_gug5u"]
+[ext_resource type="AudioStream" uid="uid://daahoc8ur02of" path="res://Assets/Fx/Dummy/reversing.wav" id="33_u0c6q"]
+[ext_resource type="AudioStream" uid="uid://ba0loc5iv2syi" path="res://Assets/Fx/Dummy/Truck_reversing.wav" id="34_gug5u"]
+[ext_resource type="AudioStream" uid="uid://gcdfsn8ce7gw" path="res://Assets/Fx/Dummy/supercharger_off.wav" id="34_n8ibd"]
+[ext_resource type="FontFile" uid="uid://cj1aj4pp8gh2g" path="res://Assets/Font/FontFont - Nort Bold.otf" id="40_n8ibd"]
+[ext_resource type="FontFile" uid="uid://1esw83exqxxf" path="res://Assets/Font/FontFont - Nort.otf" id="41_5qu5d"]
+[ext_resource type="Texture2D" uid="uid://coxmbi1l6ngh3" path="res://Assets/UI/Steering.png" id="42_5qu5d"]
+
+[sub_resource type="Curve" id="Curve_kfsp2"]
+_data = [Vector2(0, 0.4), 0.0, 0.0, 0, 0, Vector2(0.2, 0.7), 0.0, 0.0, 0, 0, Vector2(0.4, 0.95), 0.0, 0.0, 0, 0, Vector2(0.6, 1), 0.0, 0.0, 0, 0, Vector2(0.8, 0.98), 0.0, 0.0, 0, 0, Vector2(0.95, 0.9), 0.0, 0.0, 0, 0, Vector2(1, 0.85), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uo6lw"]
+size = Vector3(1.6, 0.5, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_meysa"]
+render_priority = 0
+shader = ExtResource("2_pb1xm")
+shader_parameter/world_uv = false
+shader_parameter/object_uv = false
+shader_parameter/object_uv_scale = Vector2(1, 1)
+shader_parameter/preset_color = 0
+shader_parameter/base_color = Color(0, 0.2166667, 1, 1)
+shader_parameter/metalic = 0.25
+shader_parameter/roughness = 0.75
+shader_parameter/grid_scale = 1.0
+shader_parameter/grid_width = 0.01
+shader_parameter/grid_color = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/inside_scale = 1.0
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_color = Color(0.8, 0.8, 0.8, 0.8)
+shader_parameter/checkered = true
+shader_parameter/sub_checkered_grid = false
+shader_parameter/checkered_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/checkered_blend_color = 0.1
+shader_parameter/use_inside_uv = false
+shader_parameter/use_albedo_color = false
+shader_parameter/albedo_alpha = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_m2jlb"]
+material = SubResource("ShaderMaterial_meysa")
+size = Vector3(1.6, 0.5, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_deolq"]
+render_priority = 0
+shader = ExtResource("2_pb1xm")
+shader_parameter/world_uv = false
+shader_parameter/object_uv = false
+shader_parameter/object_uv_scale = Vector2(1, 1)
+shader_parameter/preset_color = 0
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/metalic = 0.25
+shader_parameter/roughness = 0.75
+shader_parameter/grid_scale = 1.0
+shader_parameter/grid_width = 0.01
+shader_parameter/grid_color = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/inside_scale = 1.0
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_color = Color(0.8, 0.8, 0.8, 0.8)
+shader_parameter/checkered = true
+shader_parameter/sub_checkered_grid = false
+shader_parameter/checkered_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/checkered_blend_color = 0.1
+shader_parameter/use_inside_uv = false
+shader_parameter/use_albedo_color = false
+shader_parameter/albedo_alpha = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ff75n"]
+material = SubResource("ShaderMaterial_deolq")
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.245
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qqkh6"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_v6nfp")
+backlight_enabled = true
+backlight = Color(0.44806695, 0.44806695, 0.44806695, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 8
+particles_anim_loop = false
+proximity_fade_enabled = true
+proximity_fade_distance = 0.5
+distance_fade_mode = 1
+distance_fade_max_distance = 3.0
+
+[sub_resource type="Curve" id="Curve_wvjjb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.48921832, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_15hly"]
+curve = SubResource("Curve_wvjjb")
+
+[sub_resource type="Curve" id="Curve_wckek"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_f3nuf"]
+curve = SubResource("Curve_wckek")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fs6t0"]
+lifetime_randomness = 0.5
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 0, 0)
+angular_velocity_min = -10.000016
+angular_velocity_max = 9.999984
+gravity = Vector3(0, 1, 6)
+damping_min = 0.3
+damping_max = 0.3
+scale_min = 2.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_f3nuf")
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 6.0
+color = Color(0.5743278, 0.5743278, 0.5743278, 1)
+alpha_curve = SubResource("CurveTexture_15hly")
+anim_speed_min = 0.5
+anim_speed_max = 1.0
+anim_offset_max = 1.0
+turbulence_enabled = true
+turbulence_influence_min = 0.020000001
+turbulence_influence_max = 0.020000001
+
+[sub_resource type="QuadMesh" id="QuadMesh_hrshh"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="CurveTexture" id="CurveTexture_tqtuj"]
+
+[sub_resource type="Gradient" id="Gradient_vq6gd"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fc8jt"]
+gradient = SubResource("Gradient_vq6gd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qqkh6"]
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_fc8jt")
+alpha_curve = SubResource("CurveTexture_tqtuj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_le1fn"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_wvjjb"]
+material = SubResource("StandardMaterial3D_le1fn")
+size = Vector2(0.4, 0.4)
+orientation = 1
+
+[sub_resource type="Curve" id="Curve_ud145"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2u2wr"]
+curve = SubResource("Curve_ud145")
+
+[sub_resource type="Gradient" id="Gradient_8vvrd"]
+colors = PackedColorArray(0.5083332, 0.5, 1, 1, 0.5019608, 1, 0.85882354, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_15hly"]
+gradient = SubResource("Gradient_8vvrd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rcu4n"]
+emission_shape = 2
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 9)
+damping_max = 1.0
+scale_min = 0.02
+scale_max = 0.049999997
+color = Color(0.5019608, 1, 0.85882354, 1)
+color_ramp = SubResource("GradientTexture1D_15hly")
+alpha_curve = SubResource("CurveTexture_2u2wr")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.29999998
+turbulence_enabled = true
+turbulence_noise_scale = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_swxic"]
+transparency = 1
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(0.5019608, 1, 0.85882354, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_nk5ix"]
+material = SubResource("StandardMaterial3D_swxic")
+radius = 0.25
+height = 0.5
+radial_segments = 8
+rings = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yq07t"]
+shader = ExtResource("5_hrshh")
+
+[sub_resource type="Gradient" id="Gradient_15hly"]
+colors = PackedColorArray(0.5019608, 1, 0.85882354, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kfsp2"]
+gradient = SubResource("Gradient_15hly")
+
+[sub_resource type="Curve" id="Curve_f3nuf"]
+bake_resolution = 16
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i13aa"]
+curve = SubResource("Curve_f3nuf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_myi4s"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_orc58")
+shader_parameter/tex = ExtResource("7_a87fv")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_kfsp2")
+shader_parameter/curve = SubResource("CurveTexture_i13aa")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 42
+
+[sub_resource type="QuadMesh" id="QuadMesh_63l1q"]
+material = SubResource("ShaderMaterial_myi4s")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqtuj"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0, 0, 0, 0.7176471)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vq6gd"]
+font = ExtResource("40_n8ibd")
+font_size = 18
+font_color = Color(0.5689727, 0.56897277, 0.5689727, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fc8jt"]
+font = ExtResource("41_5qu5d")
+font_size = 18
+
+[node name="DefaultDummy" type="RigidBody3D" node_paths=PackedStringArray("extra_features", "front_left_wheel", "front_right_wheel", "rear_left_wheel", "rear_right_wheel")]
+script = ExtResource("1_8jcdi")
+extra_features = NodePath("ExtraFeatures")
+front_left_wheel = NodePath("Wheels/FrontLeft")
+front_right_wheel = NodePath("Wheels/FrontRight")
+rear_left_wheel = NodePath("Wheels/RearLeft")
+rear_right_wheel = NodePath("Wheels/RearRight")
+torque_curve = SubResource("Curve_kfsp2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.0011483431)
+shape = SubResource("BoxShape3D_uo6lw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_m2jlb")
+
+[node name="Wheels" type="Node3D" parent="."]
+
+[node name="FrontLeft" type="RayCast3D" parent="Wheels" node_paths=PackedStringArray("wheel_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1.5)
+script = ExtResource("3_kfiem")
+wheel_node = NodePath("Node3D")
+
+[node name="Node3D" type="Node3D" parent="Wheels/FrontLeft"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheels/FrontLeft/Node3D"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_ff75n")
+skeleton = NodePath("../..")
+
+[node name="FrontRight" type="RayCast3D" parent="Wheels" node_paths=PackedStringArray("wheel_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.5)
+script = ExtResource("3_kfiem")
+wheel_node = NodePath("Node3D")
+
+[node name="Node3D" type="Node3D" parent="Wheels/FrontRight"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheels/FrontRight/Node3D"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_ff75n")
+skeleton = NodePath("../..")
+
+[node name="RearLeft" type="RayCast3D" parent="Wheels" node_paths=PackedStringArray("wheel_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1.5)
+script = ExtResource("3_kfiem")
+wheel_node = NodePath("Node3D")
+
+[node name="Node3D" type="Node3D" parent="Wheels/RearLeft"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheels/RearLeft/Node3D"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_ff75n")
+skeleton = NodePath("../..")
+
+[node name="RearRight" type="RayCast3D" parent="Wheels" node_paths=PackedStringArray("wheel_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.5)
+script = ExtResource("3_kfiem")
+wheel_node = NodePath("Node3D")
+
+[node name="Node3D" type="Node3D" parent="Wheels/RearRight"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wheels/RearRight/Node3D"]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_ff75n")
+skeleton = NodePath("../..")
+
+[node name="VisualFX" type="Node3D" parent="."]
+
+[node name="Lights" type="Node3D" parent="VisualFX"]
+
+[node name="Brake_Light_Left" type="OmniLight3D" parent="VisualFX/Lights"]
+transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, -0.6, 0.6, 2.3107657)
+layers = 2
+light_color = Color(0.8509804, 0.015686275, 0.16078432, 1)
+light_energy = 0.0
+shadow_enabled = true
+
+[node name="Brake_Light_Right" type="OmniLight3D" parent="VisualFX/Lights"]
+transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, 0.7, 0.6, 2.3107657)
+layers = 2
+light_color = Color(0.8509804, 0.015686275, 0.16078432, 1)
+light_energy = 0.0
+shadow_enabled = true
+
+[node name="Reverse_Light_Left" type="OmniLight3D" parent="VisualFX/Lights"]
+transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, -0.59999996, 0.6, 2.3107657)
+layers = 2
+light_energy = 0.0
+shadow_enabled = true
+
+[node name="Reverse_Light_Right" type="OmniLight3D" parent="VisualFX/Lights"]
+transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, 0.70000005, 0.6, 2.3107657)
+layers = 2
+light_energy = 0.0
+shadow_enabled = true
+
+[node name="Turn_Signal_Light_Left" type="OmniLight3D" parent="VisualFX/Lights"]
+transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, -0.59999996, 0.6, 2.3107657)
+layers = 2
+light_color = Color(1, 0.8666667, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+
+[node name="Turn_Signal_Light_Right" type="OmniLight3D" parent="VisualFX/Lights"]
+transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, 0.70000005, 0.6, 2.3107657)
+layers = 2
+light_color = Color(1, 0.8666667, 0, 1)
+light_energy = 0.0
+shadow_enabled = true
+
+[node name="Front_Light_Left" type="SpotLight3D" parent="VisualFX/Lights"]
+transform = Transform3D(-1, 0, 8.940697e-08, 7.816205e-15, -1, 8.742278e-08, 8.940697e-08, 8.742278e-08, 1, -0.8426533, 0.59002364, -2)
+layers = 4
+light_energy = 0.0
+light_volumetric_fog_energy = 3.0
+shadow_enabled = true
+
+[node name="Front_Light_Right" type="SpotLight3D" parent="VisualFX/Lights"]
+transform = Transform3D(-1, 0, 8.940697e-08, 7.816205e-15, -1, 8.742278e-08, 8.940697e-08, 8.742278e-08, 1, 0.75734675, 0.59002364, -2)
+layers = 4
+light_energy = 0.0
+light_volumetric_fog_energy = 3.0
+shadow_enabled = true
+
+[node name="Dust" type="Node3D" parent="VisualFX"]
+
+[node name="Dust_1" type="GPUParticles3D" parent="VisualFX/Dust"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8000001, 0, 2)
+layers = 4
+material_override = SubResource("StandardMaterial3D_qqkh6")
+emitting = false
+lifetime = 0.5
+interpolate = false
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_fs6t0")
+draw_pass_1 = SubResource("QuadMesh_hrshh")
+
+[node name="Dust_2" type="GPUParticles3D" parent="VisualFX/Dust"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8000001, 0, 2)
+layers = 4
+material_override = SubResource("StandardMaterial3D_qqkh6")
+emitting = false
+lifetime = 0.5
+interpolate = false
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_fs6t0")
+draw_pass_1 = SubResource("QuadMesh_hrshh")
+
+[node name="SkidMarks" type="Node3D" parent="VisualFX"]
+
+[node name="1" type="GPUParticles3D" parent="VisualFX/SkidMarks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0031135, -0.29299146, -1.4867795)
+amount = 150
+use_fixed_seed = true
+seed = 3566598210
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_qqkh6")
+draw_pass_1 = SubResource("QuadMesh_wvjjb")
+
+[node name="2" type="GPUParticles3D" parent="VisualFX/SkidMarks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9968865, -0.29299146, -1.4867795)
+emitting = false
+amount = 150
+use_fixed_seed = true
+seed = 3705271029
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_qqkh6")
+draw_pass_1 = SubResource("QuadMesh_wvjjb")
+
+[node name="3" type="GPUParticles3D" parent="VisualFX/SkidMarks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0031135, -0.29299146, 1.5132205)
+emitting = false
+amount = 150
+use_fixed_seed = true
+seed = 3512407993
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_qqkh6")
+draw_pass_1 = SubResource("QuadMesh_wvjjb")
+
+[node name="4" type="GPUParticles3D" parent="VisualFX/SkidMarks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9968865, -0.29299146, 1.5132205)
+emitting = false
+amount = 150
+use_fixed_seed = true
+seed = 1799092789
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_qqkh6")
+draw_pass_1 = SubResource("QuadMesh_wvjjb")
+
+[node name="NitroTrail" type="Node3D" parent="VisualFX"]
+
+[node name="Nitro_Light_Left" type="OmniLight3D" parent="VisualFX/NitroTrail"]
+transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, -0.8, 0.5, 2.0107658)
+layers = 2
+light_color = Color(0.5019608, 1, 0.85882354, 1)
+light_energy = 6.0
+shadow_enabled = true
+
+[node name="DotsTails" type="GPUParticles3D" parent="VisualFX/NitroTrail/Nitro_Light_Left"]
+transform = Transform3D(-0.29999998, 0, -2.682209e-08, 0, 0.29999998, 0, 2.682209e-08, 0, -0.29999998, 0.02086544, 0.05644381, 0.43824768)
+layers = 4
+emitting = false
+amount = 150
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rcu4n")
+draw_pass_1 = SubResource("SphereMesh_nk5ix")
+
+[node name="NitroTailLeft" type="GPUParticles3D" parent="VisualFX/NitroTrail/Nitro_Light_Left"]
+transform = Transform3D(-0.3, 0, -2.6822091e-08, 0, 0.3, 0, 2.6822091e-08, 0, -0.3, 0.02086544, 0.05644381, 0.43824768)
+layers = 4
+amount = 22
+lifetime = 22.0
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ShaderMaterial_yq07t")
+draw_pass_1 = SubResource("QuadMesh_63l1q")
+script = ExtResource("8_snnsh")
+length = 22
+length_seconds = 0.36666666666666664
+texture = ExtResource("7_a87fv")
+color_ramp = SubResource("GradientTexture1D_kfsp2")
+curve = SubResource("CurveTexture_i13aa")
+use_red_as_alpha = true
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://d3tp1j6cxouud"
+
+[node name="Nitro_Light_Right" type="OmniLight3D" parent="VisualFX/NitroTrail"]
+transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, 0.8, 0.5, 2.0107658)
+layers = 2
+light_color = Color(0.5019608, 1, 0.85882354, 1)
+light_energy = 6.0
+shadow_enabled = true
+
+[node name="DotsTails" type="GPUParticles3D" parent="VisualFX/NitroTrail/Nitro_Light_Right"]
+transform = Transform3D(-0.29999998, 0, -2.682209e-08, 0, 0.29999998, 0, 2.682209e-08, 0, -0.29999998, 0.009352922, 0.05644381, 0.43824768)
+layers = 4
+emitting = false
+amount = 150
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rcu4n")
+draw_pass_1 = SubResource("SphereMesh_nk5ix")
+
+[node name="NitroTailRight" type="GPUParticles3D" parent="VisualFX/NitroTrail/Nitro_Light_Right"]
+transform = Transform3D(-0.3, 0, -2.6822091e-08, 0, 0.3, 0, 2.6822091e-08, 0, -0.3, 0.009352922, 0.05644381, 0.43824768)
+layers = 4
+amount = 22
+lifetime = 22.0
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ShaderMaterial_yq07t")
+draw_pass_1 = SubResource("QuadMesh_63l1q")
+script = ExtResource("8_snnsh")
+length = 22
+length_seconds = 0.36666666666666664
+texture = ExtResource("7_a87fv")
+color_ramp = SubResource("GradientTexture1D_kfsp2")
+curve = SubResource("CurveTexture_i13aa")
+use_red_as_alpha = true
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://d3tp1j6cxouud"
+
+[node name="SoundFX" type="Node3D" parent="."]
+
+[node name="Engine" type="Node3D" parent="SoundFX"]
+
+[node name="EngineStartUp" type="AudioStreamPlayer3D" parent="SoundFX/Engine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("9_kfsp2")
+
+[node name="IdleEngine" type="AudioStreamPlayer3D" parent="SoundFX/Engine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("10_i13aa")
+
+[node name="EngineRPMLayers" type="Node3D" parent="SoundFX"]
+
+[node name="LowOn" type="AudioStreamPlayer3D" parent="SoundFX/EngineRPMLayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("11_63l1q")
+
+[node name="LowOff" type="AudioStreamPlayer3D" parent="SoundFX/EngineRPMLayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("12_gbv6x")
+
+[node name="MedOn" type="AudioStreamPlayer3D" parent="SoundFX/EngineRPMLayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("13_l6ror")
+
+[node name="MedOff" type="AudioStreamPlayer3D" parent="SoundFX/EngineRPMLayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("14_mn077")
+
+[node name="HighOn" type="AudioStreamPlayer3D" parent="SoundFX/EngineRPMLayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("15_6mq5l")
+
+[node name="HighOff" type="AudioStreamPlayer3D" parent="SoundFX/EngineRPMLayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("16_fq8oo")
+
+[node name="MaxRPM" type="AudioStreamPlayer3D" parent="SoundFX/EngineRPMLayers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("17_omj6t")
+
+[node name="Muflers" type="Node3D" parent="SoundFX"]
+
+[node name="MufllerOn1" type="AudioStreamPlayer3D" parent="SoundFX/Muflers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("18_2qmxc")
+
+[node name="MufllerOn2" type="AudioStreamPlayer3D" parent="SoundFX/Muflers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("24_kto56")
+
+[node name="MufllerOn3" type="AudioStreamPlayer3D" parent="SoundFX/Muflers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("25_u0c6q")
+
+[node name="MufllerOn4" type="AudioStreamPlayer3D" parent="SoundFX/Muflers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("26_gug5u")
+
+[node name="MufllerOn5" type="AudioStreamPlayer3D" parent="SoundFX/Muflers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("27_n8ibd")
+
+[node name="MufllerOff1" type="AudioStreamPlayer3D" parent="SoundFX/Muflers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("19_dkvfb")
+
+[node name="MufllerOff2" type="AudioStreamPlayer3D" parent="SoundFX/Muflers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("20_qmyht")
+
+[node name="MufllerOff3" type="AudioStreamPlayer3D" parent="SoundFX/Muflers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("21_u552y")
+
+[node name="MufllerOff4" type="AudioStreamPlayer3D" parent="SoundFX/Muflers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("22_8rc6v")
+
+[node name="MufllerOff5" type="AudioStreamPlayer3D" parent="SoundFX/Muflers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("23_3sbui")
+
+[node name="Shift" type="Node3D" parent="SoundFX"]
+
+[node name="Shift" type="AudioStreamPlayer3D" parent="SoundFX/Shift"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("28_3sbui")
+volume_db = -4.0
+
+[node name="Reverse" type="Node3D" parent="SoundFX"]
+
+[node name="Reversing" type="AudioStreamPlayer3D" parent="SoundFX/Reverse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("33_u0c6q")
+
+[node name="TruckReversing" type="AudioStreamPlayer3D" parent="SoundFX/Reverse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("34_gug5u")
+volume_db = -16.0
+
+[node name="Shots" type="Node3D" parent="SoundFX"]
+
+[node name="ShortShot" type="AudioStreamPlayer3D" parent="SoundFX/Shots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("31_3sbui")
+
+[node name="LongShot" type="AudioStreamPlayer3D" parent="SoundFX/Shots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("32_kto56")
+
+[node name="Supercharger" type="Node3D" parent="SoundFX"]
+
+[node name="SuperchargerOn" type="AudioStreamPlayer3D" parent="SoundFX/Supercharger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("33_gug5u")
+
+[node name="SuperchargerOff" type="AudioStreamPlayer3D" parent="SoundFX/Supercharger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -1.4)
+stream = ExtResource("34_n8ibd")
+
+[node name="InputController" type="Node" parent="." node_paths=PackedStringArray("vehicle_node")]
+script = ExtResource("4_u2hpp")
+vehicle_node = NodePath("..")
+engine_start_delay = 0.64
+
+[node name="ExtraFeatures" type="Node" parent="." node_paths=PackedStringArray("vehicle_node")]
+script = ExtResource("5_2572m")
+vehicle_node = NodePath("..")
+
+[node name="VisualController" type="Node" parent="." node_paths=PackedStringArray("vehicle_node", "input_controller", "fx_brake_lights", "fx_reverse_lights", "fx_front_lights", "fx_turn_signal_left_light", "fx_turn_signal_right_light", "nitro_fx_lights", "nitro_GPU_particles", "nitro_trails", "dust_GPU_particles", "skid_marks_GPU_particles")]
+script = ExtResource("6_ub5kx")
+vehicle_node = NodePath("..")
+input_controller = NodePath("../InputController")
+fx_brake_lights = [NodePath("../VisualFX/Lights/Brake_Light_Left"), NodePath("../VisualFX/Lights/Brake_Light_Right")]
+fx_reverse_lights = [NodePath("../VisualFX/Lights/Reverse_Light_Left"), NodePath("../VisualFX/Lights/Reverse_Light_Right")]
+fx_front_lights = [NodePath("../VisualFX/Lights/Front_Light_Left"), NodePath("../VisualFX/Lights/Front_Light_Right")]
+fx_turn_signal_left_light = NodePath("../VisualFX/Lights/Turn_Signal_Light_Left")
+fx_turn_signal_right_light = NodePath("../VisualFX/Lights/Turn_Signal_Light_Right")
+nitro_fx_lights = [NodePath("../VisualFX/NitroTrail/Nitro_Light_Left"), NodePath("../VisualFX/NitroTrail/Nitro_Light_Right")]
+nitro_GPU_particles = [NodePath("../VisualFX/NitroTrail/Nitro_Light_Left/DotsTails"), NodePath("../VisualFX/NitroTrail/Nitro_Light_Right/DotsTails")]
+nitro_trails = [NodePath("../VisualFX/NitroTrail/Nitro_Light_Left/NitroTailLeft"), NodePath("../VisualFX/NitroTrail/Nitro_Light_Right/NitroTailRight")]
+nitro_fx_color = Color(0.5019608, 1, 0.85882354, 1)
+dust_GPU_particles = [NodePath("../VisualFX/Dust/Dust_1"), NodePath("../VisualFX/Dust/Dust_2")]
+skid_marks_GPU_particles = [NodePath("../VisualFX/SkidMarks/2"), NodePath("../VisualFX/SkidMarks/3"), NodePath("../VisualFX/SkidMarks/4"), NodePath("../VisualFX/SkidMarks/1")]
+
+[node name="SoundController" type="Node" parent="." node_paths=PackedStringArray("vehicle_node", "input_controller", "engine_start_up", "idle_engine", "low_on", "low_off", "med_on", "med_off", "high_on", "high_off", "maxRPM", "mufller_on_1", "mufller_on_2", "mufller_on_3", "mufller_on_4", "mufller_on_5", "mufller_off_1", "mufller_off_2", "mufller_off_3", "mufller_off_4", "mufller_off_5", "shift", "reversing", "truck_reversing", "short_shot", "long_shot", "supercharger_on", "supercharger_off")]
+script = ExtResource("9_wckek")
+vehicle_node = NodePath("..")
+input_controller = NodePath("../InputController")
+engine_start_up = NodePath("../SoundFX/Engine/EngineStartUp")
+idle_engine = NodePath("../SoundFX/Engine/IdleEngine")
+low_on = NodePath("../SoundFX/EngineRPMLayers/LowOn")
+low_off = NodePath("../SoundFX/EngineRPMLayers/LowOff")
+med_on = NodePath("../SoundFX/EngineRPMLayers/MedOn")
+med_off = NodePath("../SoundFX/EngineRPMLayers/MedOff")
+high_on = NodePath("../SoundFX/EngineRPMLayers/MedOff")
+high_off = NodePath("../SoundFX/EngineRPMLayers/HighOff")
+maxRPM = NodePath("../SoundFX/EngineRPMLayers/MaxRPM")
+mufller_on_1 = NodePath("../SoundFX/Muflers/MufllerOn1")
+mufller_on_2 = NodePath("../SoundFX/Muflers/MufllerOn2")
+mufller_on_3 = NodePath("../SoundFX/Muflers/MufllerOn3")
+mufller_on_4 = NodePath("../SoundFX/Muflers/MufllerOn4")
+mufller_on_5 = NodePath("../SoundFX/Muflers/MufllerOn5")
+mufller_off_1 = NodePath("../SoundFX/Muflers/MufllerOff1")
+mufller_off_2 = NodePath("../SoundFX/Muflers/MufllerOff2")
+mufller_off_3 = NodePath("../SoundFX/Muflers/MufllerOff3")
+mufller_off_4 = NodePath("../SoundFX/Muflers/MufllerOff4")
+mufller_off_5 = NodePath("../SoundFX/Muflers/MufllerOff5")
+shift = NodePath("../SoundFX/Shift/Shift")
+reversing = NodePath("../SoundFX/Reverse/Reversing")
+truck_reversing = NodePath("../SoundFX/Reverse/TruckReversing")
+short_shot = NodePath("../SoundFX/Shots/ShortShot")
+long_shot = NodePath("../SoundFX/Shots/LongShot")
+supercharger_on = NodePath("../SoundFX/Supercharger/SuperchargerOn")
+supercharger_off = NodePath("../SoundFX/Supercharger/SuperchargerOff")
+truck_reversing_volume = -16.0
+short_shot_volume = -3.0
+long_shot_volume = -3.0
+supercharger_on_volume_db = -16.0
+supercharger_off_volume_db = -20.0
+
+[node name="DebugDraw" type="Node" parent="." node_paths=PackedStringArray("vehicle_node")]
+script = ExtResource("6_hw4k4")
+vehicle_node = NodePath("..")
+show_debug = true
+show_wheel_sphere = false
+show_suspension_box = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="DebugDraw"]
+
+[node name="DebugTach" type="PanelContainer" parent="DebugDraw/CanvasLayer"]
+custom_minimum_size = Vector2(300, 0)
+offset_left = 1594.0
+offset_top = 904.0
+offset_right = 1894.0
+offset_bottom = 1050.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_tqtuj")
+
+[node name="VBox" type="VBoxContainer" parent="DebugDraw/CanvasLayer/DebugTach"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="RPM" type="HBoxContainer" parent="DebugDraw/CanvasLayer/DebugTach/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Title" type="Label" parent="DebugDraw/CanvasLayer/DebugTach/VBox/RPM"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "RPM"
+label_settings = SubResource("LabelSettings_vq6gd")
+
+[node name="RPM" type="Label" parent="DebugDraw/CanvasLayer/DebugTach/VBox/RPM"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "null"
+label_settings = SubResource("LabelSettings_fc8jt")
+horizontal_alignment = 2
+
+[node name="Speed" type="HBoxContainer" parent="DebugDraw/CanvasLayer/DebugTach/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Title" type="Label" parent="DebugDraw/CanvasLayer/DebugTach/VBox/Speed"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Speed"
+label_settings = SubResource("LabelSettings_vq6gd")
+
+[node name="Speed" type="Label" parent="DebugDraw/CanvasLayer/DebugTach/VBox/Speed"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "null"
+label_settings = SubResource("LabelSettings_fc8jt")
+horizontal_alignment = 2
+
+[node name="Transmission" type="HBoxContainer" parent="DebugDraw/CanvasLayer/DebugTach/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Title" type="Label" parent="DebugDraw/CanvasLayer/DebugTach/VBox/Transmission"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Transmission "
+label_settings = SubResource("LabelSettings_vq6gd")
+
+[node name="Transmission" type="Label" parent="DebugDraw/CanvasLayer/DebugTach/VBox/Transmission"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "null"
+label_settings = SubResource("LabelSettings_fc8jt")
+horizontal_alignment = 2
+
+[node name="Gear" type="HBoxContainer" parent="DebugDraw/CanvasLayer/DebugTach/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Title" type="Label" parent="DebugDraw/CanvasLayer/DebugTach/VBox/Gear"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Gear"
+label_settings = SubResource("LabelSettings_vq6gd")
+
+[node name="Gear" type="Label" parent="DebugDraw/CanvasLayer/DebugTach/VBox/Gear"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "null"
+label_settings = SubResource("LabelSettings_fc8jt")
+horizontal_alignment = 2
+
+[node name="Steering" type="TextureRect" parent="DebugDraw/CanvasLayer"]
+unique_name_in_owner = true
+modulate = Color(0.422371, 0.422371, 0.422371, 1)
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = -1
+anchor_left = 0.032
+anchor_top = 0.943
+anchor_right = 0.032
+anchor_bottom = 0.943
+offset_left = -31.568005
+offset_top = -32.440002
+offset_right = 32.431995
+offset_bottom = 31.559998
+pivot_offset = Vector2(32, 32)
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = ExtResource("42_5qu5d")
+expand_mode = 1

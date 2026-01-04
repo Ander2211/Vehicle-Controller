@@ -1,0 +1,406 @@
+[gd_scene load_steps=18 format=3 uid="uid://c1cl43acb5p60"]
+
+[ext_resource type="Texture2D" uid="uid://tg8fbe7m33dq" path="res://Assets/Sky/HDRI.hdr" id="1_ujg2t"]
+[ext_resource type="Shader" uid="uid://la35wdc6hqal" path="res://Assets/Shader/Grid.gdshader" id="3_ras6e"]
+[ext_resource type="Script" uid="uid://dn5xcq0wcqm4y" path="res://Scripts/Props.gd" id="3_ur6ln"]
+[ext_resource type="PackedScene" uid="uid://drdmu3hscy6ld" path="res://Scenes/Vehicles/BMW.tscn" id="3_ydjnf"]
+[ext_resource type="Script" uid="uid://ema1p32jrctg" path="res://Scripts/Camera.gd" id="10_4k8gb"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_we8qr"]
+panorama = ExtResource("1_ujg2t")
+
+[sub_resource type="Sky" id="Sky_bvsp4"]
+sky_material = SubResource("PanoramaSkyMaterial_we8qr")
+
+[sub_resource type="Environment" id="Environment_imo2q"]
+background_mode = 2
+sky = SubResource("Sky_bvsp4")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 1
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.05
+glow_blend_mode = 1
+glow_hdr_threshold = 0.9
+glow_hdr_scale = 0.08
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.005
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_imo2q"]
+render_priority = 0
+shader = ExtResource("3_ras6e")
+shader_parameter/world_uv = false
+shader_parameter/object_uv = false
+shader_parameter/object_uv_scale = Vector2(1, 1)
+shader_parameter/preset_color = 1
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/metalic = 0.25
+shader_parameter/roughness = 0.75
+shader_parameter/grid_scale = 0.1
+shader_parameter/grid_width = 0.01
+shader_parameter/grid_color = Color(0.34656933, 0.3465694, 0.3465691, 1)
+shader_parameter/inside_scale = 2.0
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_color = Color(0.13319638, 0.13319641, 0.1331963, 0.8)
+shader_parameter/checkered = true
+shader_parameter/sub_checkered_grid = false
+shader_parameter/checkered_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/checkered_blend_color = 0.7410000351975
+shader_parameter/use_inside_uv = false
+shader_parameter/use_albedo_color = false
+shader_parameter/albedo_alpha = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_1mge1"]
+material = SubResource("ShaderMaterial_imo2q")
+size = Vector3(2200, 0.5, 2000)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fg1vr"]
+data = PackedVector3Array(-25000, 0.25, 25000, 25000, 0.25, 25000, -25000, -0.25, 25000, 25000, 0.25, 25000, 25000, -0.25, 25000, -25000, -0.25, 25000, 25000, 0.25, -25000, -25000, 0.25, -25000, 25000, -0.25, -25000, -25000, 0.25, -25000, -25000, -0.25, -25000, 25000, -0.25, -25000, 25000, 0.25, 25000, 25000, 0.25, -25000, 25000, -0.25, 25000, 25000, 0.25, -25000, 25000, -0.25, -25000, 25000, -0.25, 25000, -25000, 0.25, -25000, -25000, 0.25, 25000, -25000, -0.25, -25000, -25000, 0.25, 25000, -25000, -0.25, 25000, -25000, -0.25, -25000, 25000, 0.25, 25000, -25000, 0.25, 25000, 25000, 0.25, -25000, -25000, 0.25, 25000, -25000, 0.25, -25000, 25000, 0.25, -25000, -25000, -0.25, 25000, 25000, -0.25, 25000, -25000, -0.25, -25000, 25000, -0.25, 25000, 25000, -0.25, -25000, -25000, -0.25, -25000)
+
+[sub_resource type="Shader" id="Shader_ydjnf"]
+code = "shader_type spatial;
+
+// Use global coordinate
+uniform bool world_uv = false;
+// Use the uv of the object instead of the vertex as a coordinate
+uniform bool object_uv = false;
+uniform vec2 object_uv_scale = vec2(1.0);
+// Render
+group_uniforms render;
+// Color preset index: 0 == disabled/custom
+uniform int preset_color : hint_range(0, 8, 1) = 0;
+uniform vec3 base_color : source_color = vec3(0.0);
+uniform float metalic : hint_range(0.0, 1.0, 0.001) = 0.25;
+uniform float roughness : hint_range(0.0, 1.0, 0.001) = 0.75;
+
+// Main grid
+group_uniforms grid;
+uniform float grid_scale = 1.0;
+uniform float grid_width : hint_range(0.0, 1.0, 0.001) = 0.01;
+uniform vec4 grid_color : source_color = vec4(vec3(0.8), 1.0);
+// Inside grid
+group_uniforms inside_grid;
+uniform float inside_scale : hint_range(0.0, 10.0, 1) = 1.0;
+uniform float inside_width : hint_range(0.0, 1.0, 0.001) = 0.01;
+uniform vec4 inside_color : source_color = vec4(0.8);
+// Checker grid
+group_uniforms checkered_grid;
+uniform bool checkered = true;
+uniform bool sub_checkered_grid = false;
+uniform vec3 checkered_color : source_color = vec3(0.25);
+uniform float checkered_blend_color : hint_range(0.0, 1.0, 0.001) = 0.1;
+
+// NOTE - When using texture, enable LOD generation and reimport the texture
+group_uniforms albedo_texture;
+uniform bool use_inside_uv = false;
+uniform bool use_albedo_color = false;
+uniform sampler2D albedo_texture : hint_default_transparent, filter_linear_mipmap;
+uniform float albedo_alpha : hint_range(0.0, 1.0, 0.001) = 0.5;
+
+// Preset colors
+const vec3 PRESET_COLORS[8] = {
+	vec3(0.2, 0.2, 0.208), // Dark
+	vec3(1.0, 0.0, 0.22), // Red
+	vec3(1.0, 0.549, 0.0), // Orange
+	vec3(1.0, 0.753, 0.0), // Yellow
+	vec3(0.106, 0.851, 0.467), // Green
+	vec3(0.318, 0.502, 0.78), // Blue
+	vec3(0.616, 0.133, 0.98), // Purple
+	vec3(0.827, 0.839, 0.851) // Light
+};
+const float EPSILON = 0.0001;
+
+varying vec3 vertex_uv;
+varying vec3 vertex_normal;
+
+// Fix preset colors, base RAW
+vec3 srgb_to_linear(vec3 color) {
+	return mix(
+		pow((color.rgb + vec3(0.055)) * (1.0 / (1.0 + 0.055)), vec3(2.4)),
+		color.rgb * (1.0 / 12.92),
+		lessThan(color.rgb, vec3(0.04045))
+	);
+}
+
+float grid_structure(vec3 uv, float width, float mult) {
+	vec3 uvDDX = dFdx(uv);
+	vec3 uvDDY = dFdy(uv);
+	
+	vec3 uv_deriv = vec3(
+		length(vec2(uvDDX.x, uvDDY.x)),
+		length(vec2(uvDDX.y, uvDDY.y)),
+		length(vec2(uvDDX.z, uvDDY.z))
+	);
+	uv_deriv = max(uv_deriv, EPSILON);
+	vec3 line_AA = uv_deriv * 1.5;
+	
+	vec3 width_value = 1.0 - vec3(width);
+	
+	vec3 target_width = width > 0.5 ? width_value : 1.0 - width_value;
+	vec3 draw_width = clamp(target_width, uv_deriv, vec3(0.5));
+	
+	vec3 grid_uv = abs(fract(uv * mult) * 2.0 - 1.0);
+	grid_uv = width > 0.5 ? 1.0 - grid_uv : grid_uv;
+	// Blend normal sides
+	float blend_value = 1.0;
+	vec3 blend_normal = abs(normalize(cross(dFdy(uv), dFdx(uv))));
+	vec3 blend_factor = smoothstep(blend_value - EPSILON, blend_value + EPSILON, blend_normal);
+	blend_factor = width > 0.5 ? 1.0 - blend_factor : blend_factor;
+	
+	vec3 grid_normal_a = width > 0.5 ? vec3(-1.0) : grid_uv;
+	vec3 grid_normal_b = width > 0.5 ? grid_uv : vec3(1.0);
+	
+	grid_uv = mix(grid_normal_a, grid_normal_b, blend_factor);
+	
+	vec3 grid_base = smoothstep(draw_width + line_AA, draw_width - line_AA, grid_uv);
+	grid_base *= clamp(target_width / draw_width, EPSILON, 1.0);
+	grid_base = mix(grid_base, target_width, clamp(uv_deriv * 2.0 - 1.0, EPSILON, 1.0));
+	grid_base = width > 0.5 ? 1.0 - grid_base : grid_base;
+	
+	return mix(mix(grid_base.x, 1.0, grid_base.y), 1.0, grid_base.z);
+}
+
+float checkered_grid(vec3 uv, float subdivide) {
+	// Checkered grid
+	vec3 board_uv = floor(uv - 0.5 - subdivide + EPSILON);
+	float board = mod((board_uv.x) + (board_uv.y) + (board_uv.z), 2.0);
+	// Blend normal sides
+	float blend_value = 1.0;
+	vec3 blend_normal = abs(normalize(cross(dFdy(uv), dFdx(uv))));
+	vec3 blend_factor = smoothstep(blend_value - EPSILON, blend_value + EPSILON, blend_normal);
+	// Filter AA
+	vec3 smooth_uv = abs(fract(uv - subdivide) * 2.0 - 1.0);
+	smooth_uv = mix(smooth_uv, vec3(1.0), blend_factor);
+	
+	vec3 uv_deriv = fwidth(uv);
+	uv_deriv = max(uv_deriv, EPSILON);
+	vec3 uv_AA = uv_deriv * 4.0;
+	
+	float smooth_value = 1.0;
+	float smooth_edge = smoothstep(0.0, uv_AA.x * smooth_value, smooth_uv.x);
+	smooth_edge *= smoothstep(0.0, uv_AA.y * smooth_value, smooth_uv.y);
+	smooth_edge *= smoothstep(0.0, uv_AA.z * smooth_value, smooth_uv.z);
+	
+	vec3 moire_step = smoothstep(vec3(1.0), vec3(0.0), uv_deriv);
+	float moire_range = (moire_step.x * moire_step.y * moire_step.z);
+	// Applay AA/Moire blend color
+	board = mix(0.0, board, smooth_edge);
+	board = mix(0.05, board, moire_range);
+	
+	return board;
+}
+
+vec4 triplanar_texture(sampler2D tex, vec3 uv, bool sub) {
+	uv = sub ? uv : uv * 0.5 + 0.5;
+	
+	vec4 albedo_x = texture(tex, object_uv ? uv.xy : uv.zy);
+	vec4 albedo_y = texture(tex, object_uv ? uv.xy : uv.xz);
+	vec4 albedo_z = texture(tex, uv.xy);
+	
+	vec3 tri_normal = vec3(0.0);
+	vec2 blend_normal = abs(normalize(vertex_normal.xz));
+	tri_normal.xz = max(vec2(0.0), blend_normal - 0.67);
+	tri_normal.xz /= max(0.00001, dot(tri_normal.xz, vec2(1.0)));
+	
+	tri_normal.y = clamp((abs(vertex_normal.y) - 0.675) * 80.0, 0.0, 1.0);
+	tri_normal.xz *= (1.0 - tri_normal.y);
+	
+	vec4 albedo = (
+		albedo_x * tri_normal.x + 
+		albedo_y * tri_normal.y +
+		albedo_z * tri_normal.z
+	); 
+	return albedo;
+}
+
+void vertex() {
+	vertex_normal = NORMAL;
+	
+	vertex_uv = mix(VERTEX, (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz, float(world_uv));
+	vertex_uv = mix(vertex_uv, vec3(UV * object_uv_scale, 0.0), float(object_uv));
+	vertex_uv *= vec3(1.0, -1.0, 1.0);
+}
+
+void fragment() {
+	vec3 base_uv = vertex_uv * grid_scale;
+	
+	// Base Grid
+	float base_grid = grid_structure(base_uv, grid_width, 0.5);
+	// Inside Grid
+	float inside_factor = mod(inside_scale, 2.0) < EPSILON ? 0.5 : 0.0;
+	float inside_reduce = floor(inside_scale / 2.0) - (abs(inside_factor - 0.5) < EPSILON ? 1.0 : 0.0);
+	vec3 inside_uv = base_uv * (inside_scale - inside_factor - inside_reduce);
+	float inside_grid = grid_structure(inside_uv - (0.5 - inside_factor), inside_width, 1.0);
+	inside_grid = inside_scale < EPSILON ? 0.0 : inside_grid;
+	inside_grid = mix(inside_grid, 0.0, smoothstep(0.0 - EPSILON, 0.5 + EPSILON, base_grid));
+	// Checkerboard
+	vec3 checker_uv = mix(base_uv / 2.0, base_uv, float(sub_checkered_grid));
+	float checkerboard = 0.0;
+	checkerboard = checkered ? checkered_grid(checker_uv, sub_checkered_grid ? 0.5 : 0.0) : 0.0;
+	
+	// Albedo texture(triplanar)
+	vec4 albedo = triplanar_texture(
+			albedo_texture,
+			use_inside_uv ? inside_uv - 0.5 - (0.5 - inside_factor) : base_uv,
+			use_inside_uv
+	);
+	
+	// Color
+	vec3 color = base_color;
+	color = preset_color != 0 ? srgb_to_linear(PRESET_COLORS[preset_color - 1]) : color;
+	
+	// Grayscale
+	if (use_albedo_color == false) {
+		float gray = dot(albedo.rgb, vec3(0.299, 0.587, 0.114));
+		albedo.rgb = vec3(gray); 
+	}
+	
+	// Applay texture/base color/checkered
+	vec3 board = mix(color, checkered_color, checkerboard * checkered_blend_color);
+	albedo.rgb = use_albedo_color ? albedo.rgb : albedo.rgb * board;
+	
+	// Mix Color
+	vec3 grid_a = mix(board, mix(board, albedo.rgb, albedo.a), albedo_alpha);
+	vec3 grid_b = mix(grid_a, inside_color.rgb, inside_grid * inside_color.a);
+	vec3 grid = mix(grid_b, grid_color.rgb, base_grid * grid_color.a);
+	
+	ALBEDO = grid;
+	METALLIC = metalic;
+	ROUGHNESS = roughness;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ur6ln"]
+render_priority = 0
+shader = SubResource("Shader_ydjnf")
+shader_parameter/world_uv = false
+shader_parameter/object_uv = false
+shader_parameter/object_uv_scale = Vector2(1, 1)
+shader_parameter/preset_color = 0
+shader_parameter/base_color = Color(0.5144192, 0.2860034, 0.07978677, 1)
+shader_parameter/metalic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/grid_scale = 0.1
+shader_parameter/grid_width = 0.01
+shader_parameter/grid_color = Color(0.30275562, 0.15906358, 0.02985211, 1)
+shader_parameter/inside_scale = 2.0
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_color = Color(0, 0, 0, 0.8)
+shader_parameter/checkered = true
+shader_parameter/sub_checkered_grid = false
+shader_parameter/checkered_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/checkered_blend_color = 0.5330000253175
+shader_parameter/use_inside_uv = false
+shader_parameter/use_albedo_color = false
+shader_parameter/albedo_alpha = 0.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ur6ln"]
+material = SubResource("ShaderMaterial_ur6ln")
+size = Vector2(50, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ydjnf"]
+size = Vector3(50, 0.001, 100)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8kt6m"]
+render_priority = 0
+shader = SubResource("Shader_ydjnf")
+shader_parameter/world_uv = false
+shader_parameter/object_uv = false
+shader_parameter/object_uv_scale = Vector2(1, 1)
+shader_parameter/preset_color = 0
+shader_parameter/base_color = Color(0.41568628, 0.6, 0.30588236, 1)
+shader_parameter/metalic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/grid_scale = 0.1
+shader_parameter/grid_width = 0.01
+shader_parameter/grid_color = Color(0.30275562, 0.15906358, 0.02985211, 1)
+shader_parameter/inside_scale = 2.0
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_color = Color(0, 0, 0, 0.8)
+shader_parameter/checkered = true
+shader_parameter/sub_checkered_grid = false
+shader_parameter/checkered_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/checkered_blend_color = 0.5330000253175
+shader_parameter/use_inside_uv = false
+shader_parameter/use_albedo_color = false
+shader_parameter/albedo_alpha = 0.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aqvle"]
+material = SubResource("ShaderMaterial_8kt6m")
+size = Vector2(50, 100)
+
+[node name="Showvcase" type="Node3D"]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_imo2q")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(0.3906176, 0.15335234, -0.90769, 0.57813215, 0.7264507, 0.37152717, 0.71636665, -0.6698898, 0.19510655, 0, 0, 0)
+light_color = Color(1, 0.85882354, 0.6509804, 1)
+light_energy = 0.3
+light_volumetric_fog_energy = 6.0
+shadow_enabled = true
+
+[node name="Road" type="Node" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="Road" groups=["Road"]]
+collision_layer = 7
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Road/Ground"]
+mesh = SubResource("BoxMesh_1mge1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Road/Ground"]
+shape = SubResource("ConcavePolygonShape3D_fg1vr")
+
+[node name="Dirt" type="StaticBody3D" parent="Road" groups=["Dirt"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -140.06201)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Road/Dirt"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39463574, 0)
+mesh = SubResource("PlaneMesh_ur6ln")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Road/Dirt"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39463574, 0)
+shape = SubResource("BoxShape3D_ydjnf")
+
+[node name="Grass" type="StaticBody3D" parent="Road" groups=["Grass"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -240)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Road/Grass"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39463574, 0)
+mesh = SubResource("PlaneMesh_aqvle")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Road/Grass"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39463574, 0)
+shape = SubResource("BoxShape3D_ydjnf")
+
+[node name="Props" type="Node3D" parent="Road" node_paths=PackedStringArray("vehicle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.178528, 0, -334.538)
+script = ExtResource("3_ur6ln")
+add_entrance = false
+vehicle = NodePath("../../BMW")
+spawn_vehicle_at_start = false
+
+[node name="Props2" type="Node3D" parent="Road" node_paths=PackedStringArray("vehicle")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -78.18021, 0, -142.70032)
+script = ExtResource("3_ur6ln")
+circuit_type = 3
+cone_mode = 2
+add_entrance = false
+vehicle = NodePath("../../BMW")
+spawn_vehicle_at_start = false
+
+[node name="BMW" parent="." instance=ExtResource("3_ydjnf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55154747, 0)
+engine_on = true
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("follow_this")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3.5)
+cull_mask = 1048567
+script = ExtResource("10_4k8gb")
+follow_this = NodePath("../BMW")

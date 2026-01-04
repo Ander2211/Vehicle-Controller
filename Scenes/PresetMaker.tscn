@@ -1,0 +1,1104 @@
+[gd_scene load_steps=28 format=3 uid="uid://ttvy8jjoicyi"]
+
+[ext_resource type="Script" uid="uid://p0k5qjdaxcd0" path="res://Scripts/Vehicle/PresetMaker.gd" id="1_14fv1"]
+[ext_resource type="FontFile" uid="uid://dhoo3u6nnwjdc" path="res://Assets/Font/Mostwasted.ttf" id="1_26qgf"]
+[ext_resource type="Shader" uid="uid://es7ly0iajik5" path="res://Assets/Shader/Board.gdshader" id="1_32chn"]
+[ext_resource type="FontFile" uid="uid://cj1aj4pp8gh2g" path="res://Assets/Font/FontFont - Nort Bold.otf" id="2_kgya1"]
+[ext_resource type="FontFile" uid="uid://b4va7x1w288cv" path="res://Assets/Font/FontFont - Nort Light.otf" id="3_4es7c"]
+[ext_resource type="FontFile" uid="uid://1esw83exqxxf" path="res://Assets/Font/FontFont - Nort.otf" id="3_p0ar5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kgya1"]
+font = ExtResource("1_26qgf")
+font_size = 64
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_obmvy"]
+shader = ExtResource("1_32chn")
+shader_parameter/size = 100.0
+shader_parameter/color1 = Color(0.64284533, 0.709707, 0.82150465, 1)
+shader_parameter/color2 = Color(0.8235294, 0.85882354, 0.91764706, 1)
+shader_parameter/speed = 0.50000002375
+shader_parameter/direction_x = 1.0
+shader_parameter/direction_y = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpo1h"]
+content_margin_left = 160.0
+content_margin_top = 50.0
+content_margin_right = 160.0
+content_margin_bottom = 50.0
+bg_color = Color(1, 1, 1, 1)
+shadow_color = Color(0, 0, 0, 0.101960786)
+shadow_size = 1
+shadow_offset = Vector2(-10, 10)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pfxsp"]
+font = ExtResource("2_kgya1")
+font_size = 40
+font_color = Color(0.18039216, 0.19607843, 0.20784314, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_miy7n"]
+font = ExtResource("3_p0ar5")
+font_size = 40
+font_color = Color(0.18039216, 0.19607843, 0.20784314, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hl20j"]
+font = ExtResource("3_4es7c")
+font_size = 20
+font_color = Color(0.37028635, 0.39634275, 0.41590354, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_us64h"]
+font = ExtResource("2_kgya1")
+font_size = 20
+font_color = Color(0.18039216, 0.19607843, 0.20784314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4dge"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_miy7n"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.5796909, 0.57969093, 0.57969093, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.36157545, 0.36157554, 0.3615753, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfxsp"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.94509804, 0.96862745, 0.9882353, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.5500002, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bvss"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.22745098, 0.5254902, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kh4wl"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.96767145, 0.96767133, 0.96767145, 1)
+border_width_left = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="Theme" id="Theme_g6m2n"]
+PopupMenu/colors/font_color = Color(0, 0, 0, 1)
+PopupMenu/constants/v_separation = 10
+PopupMenu/font_sizes/font_size = 20
+PopupMenu/fonts/font = ExtResource("3_p0ar5")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_8bvss")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_kh4wl")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hl20j"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_us64h"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.22745098, 0.5254902, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3umkn"]
+bg_color = Color(0.22745098, 0.5254902, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(0, 0, 0, 0.24705882)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6uk6"]
+bg_color = Color(0.52, 0.52, 0.52, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(0, 0, 0, 0.24705882)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f7nbw"]
+content_margin_left = 80.0
+content_margin_top = 80.0
+content_margin_right = 80.0
+content_margin_bottom = 80.0
+bg_color = Color(0.9098039, 0.9411765, 0.9843137, 1)
+shadow_color = Color(0, 0, 0, 0.101960786)
+shadow_size = 1
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6m2n"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(1, 1, 1, 0)
+border_width_bottom = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4dge"]
+font = ExtResource("2_kgya1")
+font_size = 22
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f7nbw"]
+font = ExtResource("3_p0ar5")
+font_size = 22
+font_color = Color(0.37028635, 0.39634275, 0.41590354, 1)
+
+[node name="PresetMaker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_14fv1")
+metadata/_edit_vertical_guides_ = [60.0, 1864.0]
+metadata/_edit_horizontal_guides_ = [60.0, 1020.0]
+
+[node name="Title" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 1894.0
+offset_bottom = 100.0
+size_flags_vertical = 1
+text = "Vehicle setup"
+label_settings = SubResource("LabelSettings_kgya1")
+horizontal_alignment = 1
+
+[node name="Bacground" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_obmvy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06666667, 0.06666667, 0.06666667, 1)
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="Panels" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LeftPanel" type="PanelContainer" parent="Margin/Panels"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rpo1h")
+
+[node name="GeneralPerformance" type="VBoxContainer" parent="Margin/Panels/LeftPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Top" type="VBoxContainer" parent="Margin/Panels/LeftPanel/GeneralPerformance"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/GeneralPerformance/Top"]
+layout_mode = 2
+text = "Preset maker"
+label_settings = SubResource("LabelSettings_pfxsp")
+
+[node name="Info" type="VBoxContainer" parent="Margin/Panels/LeftPanel/GeneralPerformance/Top"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/GeneralPerformance/Top/Info"]
+layout_mode = 2
+text = "Rendimiento general"
+label_settings = SubResource("LabelSettings_miy7n")
+
+[node name="Info" type="Label" parent="Margin/Panels/LeftPanel/GeneralPerformance/Top/Info"]
+layout_mode = 2
+text = "Establece qué tan rápido acelera tu auto, su velocidad máxima y para qué está diseñado."
+label_settings = SubResource("LabelSettings_hl20j")
+autowrap_mode = 2
+
+[node name="Data" type="VBoxContainer" parent="Margin/Panels/LeftPanel/GeneralPerformance"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="Item1" type="VBoxContainer" parent="Margin/Panels/LeftPanel/GeneralPerformance/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/GeneralPerformance/Data/Item1"]
+layout_mode = 2
+text = "Velocidad máxima deseada (km/h)"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="TargetTopSpeedKmh" type="LineEdit" parent="Margin/Panels/LeftPanel/GeneralPerformance/Data/Item1"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0505106, 0.050510846, 0.050510682, 1)
+theme_override_colors/selection_color = Color(0, 0.5500002, 1, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_g4dge")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_miy7n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pfxsp")
+virtual_keyboard_enabled = false
+virtual_keyboard_show_on_focus = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
+
+[node name="Item2" type="VBoxContainer" parent="Margin/Panels/LeftPanel/GeneralPerformance/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/GeneralPerformance/Data/Item2"]
+layout_mode = 2
+text = "Tiempo de 0 a 100 km/h (segundos)"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="ZeroToHundredTime" type="LineEdit" parent="Margin/Panels/LeftPanel/GeneralPerformance/Data/Item2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0505106, 0.050510846, 0.050510682, 1)
+theme_override_colors/selection_color = Color(0, 0.5500002, 1, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_g4dge")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_miy7n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pfxsp")
+virtual_keyboard_enabled = false
+virtual_keyboard_show_on_focus = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
+
+[node name="Item3" type="VBoxContainer" parent="Margin/Panels/LeftPanel/GeneralPerformance/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/GeneralPerformance/Data/Item3"]
+layout_mode = 2
+text = "Tipo de tracción"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="DrivetrainType" type="OptionButton" parent="Margin/Panels/LeftPanel/GeneralPerformance/Data/Item3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_g6m2n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hl20j")
+theme_override_constants/arrow_margin = 16
+
+[node name="Item4" type="VBoxContainer" parent="Margin/Panels/LeftPanel/GeneralPerformance/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/GeneralPerformance/Data/Item4"]
+layout_mode = 2
+text = "Uso del vehículo"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="VehicleUsage" type="OptionButton" parent="Margin/Panels/LeftPanel/GeneralPerformance/Data/Item4"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_g6m2n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hl20j")
+theme_override_constants/arrow_margin = 16
+
+[node name="Continue1" type="Button" parent="Margin/Panels/LeftPanel/GeneralPerformance"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/focus = SubResource("StyleBoxFlat_us64h")
+text = "Siguiente"
+icon_alignment = 2
+
+[node name="Dots" type="HBoxContainer" parent="Margin/Panels/LeftPanel/GeneralPerformance"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Dot1" type="PanelContainer" parent="Margin/Panels/LeftPanel/GeneralPerformance/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3umkn")
+
+[node name="Dot2" type="PanelContainer" parent="Margin/Panels/LeftPanel/GeneralPerformance/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot3" type="PanelContainer" parent="Margin/Panels/LeftPanel/GeneralPerformance/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot4" type="PanelContainer" parent="Margin/Panels/LeftPanel/GeneralPerformance/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot5" type="PanelContainer" parent="Margin/Panels/LeftPanel/GeneralPerformance/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="HandlingBehavior" type="VBoxContainer" parent="Margin/Panels/LeftPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Top" type="VBoxContainer" parent="Margin/Panels/LeftPanel/HandlingBehavior"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/HandlingBehavior/Top"]
+layout_mode = 2
+text = "Preset maker"
+label_settings = SubResource("LabelSettings_pfxsp")
+
+[node name="Info" type="VBoxContainer" parent="Margin/Panels/LeftPanel/HandlingBehavior/Top"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/HandlingBehavior/Top/Info"]
+layout_mode = 2
+text = "Comportamiento de manejo"
+label_settings = SubResource("LabelSettings_miy7n")
+
+[node name="Info" type="Label" parent="Margin/Panels/LeftPanel/HandlingBehavior/Top/Info"]
+layout_mode = 2
+text = "Controla cómo gira el coche: estable, ágil o propenso a derrapar, y qué tan suave o firme se siente la suspensión."
+label_settings = SubResource("LabelSettings_hl20j")
+autowrap_mode = 2
+
+[node name="Data" type="VBoxContainer" parent="Margin/Panels/LeftPanel/HandlingBehavior"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 30
+
+[node name="Item1" type="VBoxContainer" parent="Margin/Panels/LeftPanel/HandlingBehavior/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/HandlingBehavior/Data/Item1"]
+layout_mode = 2
+text = "Estilo de manejo"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="HandlingStyle" type="OptionButton" parent="Margin/Panels/LeftPanel/HandlingBehavior/Data/Item1"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_g6m2n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hl20j")
+theme_override_constants/arrow_margin = 16
+
+[node name="Item2" type="VBoxContainer" parent="Margin/Panels/LeftPanel/HandlingBehavior/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/HandlingBehavior/Data/Item2"]
+layout_mode = 2
+text = "Altura del vehículo"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="VehicleHeight" type="OptionButton" parent="Margin/Panels/LeftPanel/HandlingBehavior/Data/Item2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_g6m2n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hl20j")
+theme_override_constants/arrow_margin = 16
+
+[node name="Item3" type="VBoxContainer" parent="Margin/Panels/LeftPanel/HandlingBehavior/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/HandlingBehavior/Data/Item3"]
+layout_mode = 2
+text = "Rigidez de la suspensión"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="SuspensionStiffness" type="OptionButton" parent="Margin/Panels/LeftPanel/HandlingBehavior/Data/Item3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_g6m2n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hl20j")
+theme_override_constants/arrow_margin = 16
+
+[node name="Continue2" type="Button" parent="Margin/Panels/LeftPanel/HandlingBehavior"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/focus = SubResource("StyleBoxFlat_us64h")
+text = "Siguiente"
+icon_alignment = 2
+
+[node name="Dots" type="HBoxContainer" parent="Margin/Panels/LeftPanel/HandlingBehavior"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Dot2" type="PanelContainer" parent="Margin/Panels/LeftPanel/HandlingBehavior/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot1" type="PanelContainer" parent="Margin/Panels/LeftPanel/HandlingBehavior/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3umkn")
+
+[node name="Dot3" type="PanelContainer" parent="Margin/Panels/LeftPanel/HandlingBehavior/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot4" type="PanelContainer" parent="Margin/Panels/LeftPanel/HandlingBehavior/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot5" type="PanelContainer" parent="Margin/Panels/LeftPanel/HandlingBehavior/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="EngineFeel" type="VBoxContainer" parent="Margin/Panels/LeftPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Top" type="VBoxContainer" parent="Margin/Panels/LeftPanel/EngineFeel"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/EngineFeel/Top"]
+layout_mode = 2
+text = "Preset maker"
+label_settings = SubResource("LabelSettings_pfxsp")
+
+[node name="Info" type="VBoxContainer" parent="Margin/Panels/LeftPanel/EngineFeel/Top"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/EngineFeel/Top/Info"]
+layout_mode = 2
+text = "Sensación del motor"
+label_settings = SubResource("LabelSettings_miy7n")
+
+[node name="Info" type="Label" parent="Margin/Panels/LeftPanel/EngineFeel/Top/Info"]
+layout_mode = 2
+text = "Elige la “personalidad” del motor: pequeño y ágil, potente o eléctrico, y qué tan sensible se siente cuando presionas el acelerador."
+label_settings = SubResource("LabelSettings_hl20j")
+autowrap_mode = 2
+
+[node name="Data" type="VBoxContainer" parent="Margin/Panels/LeftPanel/EngineFeel"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 30
+
+[node name="Item1" type="VBoxContainer" parent="Margin/Panels/LeftPanel/EngineFeel/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/EngineFeel/Data/Item1"]
+layout_mode = 2
+text = "Sensación del motor"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="EngineType" type="OptionButton" parent="Margin/Panels/LeftPanel/EngineFeel/Data/Item1"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_g6m2n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hl20j")
+theme_override_constants/arrow_margin = 16
+
+[node name="Item2" type="VBoxContainer" parent="Margin/Panels/LeftPanel/EngineFeel/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/EngineFeel/Data/Item2"]
+layout_mode = 2
+text = "Capacidad de respuesta del acelerador"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="ThrottleResponsiveness" type="OptionButton" parent="Margin/Panels/LeftPanel/EngineFeel/Data/Item2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_g6m2n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hl20j")
+theme_override_constants/arrow_margin = 16
+
+[node name="Continue3" type="Button" parent="Margin/Panels/LeftPanel/EngineFeel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/focus = SubResource("StyleBoxFlat_us64h")
+text = "Siguiente"
+icon_alignment = 2
+
+[node name="Dots" type="HBoxContainer" parent="Margin/Panels/LeftPanel/EngineFeel"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Dot2" type="PanelContainer" parent="Margin/Panels/LeftPanel/EngineFeel/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot3" type="PanelContainer" parent="Margin/Panels/LeftPanel/EngineFeel/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot1" type="PanelContainer" parent="Margin/Panels/LeftPanel/EngineFeel/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3umkn")
+
+[node name="Dot4" type="PanelContainer" parent="Margin/Panels/LeftPanel/EngineFeel/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot5" type="PanelContainer" parent="Margin/Panels/LeftPanel/EngineFeel/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Comfort&Safety" type="VBoxContainer" parent="Margin/Panels/LeftPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Top" type="VBoxContainer" parent="Margin/Panels/LeftPanel/Comfort&Safety"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/Comfort&Safety/Top"]
+layout_mode = 2
+text = "Preset maker"
+label_settings = SubResource("LabelSettings_pfxsp")
+
+[node name="Info" type="VBoxContainer" parent="Margin/Panels/LeftPanel/Comfort&Safety/Top"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/Comfort&Safety/Top/Info"]
+layout_mode = 2
+text = "Comodidad y seguridad"
+label_settings = SubResource("LabelSettings_miy7n")
+
+[node name="Info" type="Label" parent="Margin/Panels/LeftPanel/Comfort&Safety/Top/Info"]
+layout_mode = 2
+text = "Active o desactive las ayudas al conductor, como el control de tracción, el ABS o la estabilidad, para que conducir el automóvil sea más fácil o más realista."
+label_settings = SubResource("LabelSettings_hl20j")
+autowrap_mode = 2
+
+[node name="Data" type="VBoxContainer" parent="Margin/Panels/LeftPanel/Comfort&Safety"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 30
+
+[node name="Item1" type="VBoxContainer" parent="Margin/Panels/LeftPanel/Comfort&Safety/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/Comfort&Safety/Data/Item1"]
+layout_mode = 2
+text = "Nivel de asistencia al conductor"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="DriverAssistLevel" type="OptionButton" parent="Margin/Panels/LeftPanel/Comfort&Safety/Data/Item1"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_g6m2n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hl20j")
+theme_override_constants/arrow_margin = 16
+
+[node name="Item2" type="VBoxContainer" parent="Margin/Panels/LeftPanel/Comfort&Safety/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/Comfort&Safety/Data/Item2"]
+layout_mode = 2
+text = "Habilitar asistencia de tracción"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="EnableTractionAssists" type="OptionButton" parent="Margin/Panels/LeftPanel/Comfort&Safety/Data/Item2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_g6m2n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_hl20j")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hl20j")
+theme_override_constants/arrow_margin = 16
+
+[node name="Continue4" type="Button" parent="Margin/Panels/LeftPanel/Comfort&Safety"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/focus = SubResource("StyleBoxFlat_us64h")
+text = "Siguiente"
+icon_alignment = 2
+
+[node name="Dots" type="HBoxContainer" parent="Margin/Panels/LeftPanel/Comfort&Safety"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Dot2" type="PanelContainer" parent="Margin/Panels/LeftPanel/Comfort&Safety/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot3" type="PanelContainer" parent="Margin/Panels/LeftPanel/Comfort&Safety/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot4" type="PanelContainer" parent="Margin/Panels/LeftPanel/Comfort&Safety/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot1" type="PanelContainer" parent="Margin/Panels/LeftPanel/Comfort&Safety/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3umkn")
+
+[node name="Dot5" type="PanelContainer" parent="Margin/Panels/LeftPanel/Comfort&Safety/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dimensions&Weight" type="VBoxContainer" parent="Margin/Panels/LeftPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Top" type="VBoxContainer" parent="Margin/Panels/LeftPanel/Dimensions&Weight"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Top"]
+layout_mode = 2
+text = "Preset maker"
+label_settings = SubResource("LabelSettings_pfxsp")
+
+[node name="Info" type="VBoxContainer" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Top"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Top/Info"]
+layout_mode = 2
+text = "Dimensiones y peso"
+label_settings = SubResource("LabelSettings_miy7n")
+
+[node name="Info" type="Label" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Top/Info"]
+layout_mode = 2
+text = "Introduce el tamaño y el peso aproximados del coche. Esto ayuda al sistema a ajustar su conducción, aunque no cambie su aspecto.."
+label_settings = SubResource("LabelSettings_hl20j")
+autowrap_mode = 2
+
+[node name="Data" type="VBoxContainer" parent="Margin/Panels/LeftPanel/Dimensions&Weight"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 30
+
+[node name="Item1" type="VBoxContainer" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Data/Item1"]
+layout_mode = 2
+text = "Radio de la rueda en metros"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="WheelRadius" type="LineEdit" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Data/Item1"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0505106, 0.050510846, 0.050510682, 1)
+theme_override_colors/selection_color = Color(0, 0.5500002, 1, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_g4dge")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_miy7n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pfxsp")
+virtual_keyboard_enabled = false
+virtual_keyboard_show_on_focus = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
+
+[node name="Item2" type="VBoxContainer" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Data/Item2"]
+layout_mode = 2
+text = "Ancho de rueda en milímetros"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="WheelWidth" type="LineEdit" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Data/Item2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0505106, 0.050510846, 0.050510682, 1)
+theme_override_colors/selection_color = Color(0, 0.5500002, 1, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_g4dge")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_miy7n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pfxsp")
+virtual_keyboard_enabled = false
+virtual_keyboard_show_on_focus = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
+
+[node name="Item3" type="VBoxContainer" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Data"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Data/Item3"]
+layout_mode = 2
+text = "Masa estimada Kg"
+label_settings = SubResource("LabelSettings_us64h")
+
+[node name="EstimatedMassKg" type="LineEdit" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Data/Item3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0505106, 0.050510846, 0.050510682, 1)
+theme_override_colors/selection_color = Color(0, 0.5500002, 1, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_g4dge")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_miy7n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pfxsp")
+virtual_keyboard_enabled = false
+virtual_keyboard_show_on_focus = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
+
+[node name="Continue5" type="Button" parent="Margin/Panels/LeftPanel/Dimensions&Weight"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/focus = SubResource("StyleBoxFlat_us64h")
+text = "Siguiente"
+icon_alignment = 2
+
+[node name="Dots" type="HBoxContainer" parent="Margin/Panels/LeftPanel/Dimensions&Weight"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Dot2" type="PanelContainer" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot3" type="PanelContainer" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot4" type="PanelContainer" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot5" type="PanelContainer" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v6uk6")
+
+[node name="Dot1" type="PanelContainer" parent="Margin/Panels/LeftPanel/Dimensions&Weight/Dots"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3umkn")
+
+[node name="RightPanel" type="PanelContainer" parent="Margin/Panels"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f7nbw")
+
+[node name="Data" type="VBoxContainer" parent="Margin/Panels/RightPanel"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="PresetName" type="LineEdit" parent="Margin/Panels/RightPanel/Data"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0505106, 0.050510846, 0.050510682, 1)
+theme_override_colors/font_placeholder_color = Color(0.45323122, 0.4532321, 0.45323133, 0.6)
+theme_override_colors/selection_color = Color(0, 0.5500002, 1, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_g6m2n")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_g6m2n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_g6m2n")
+placeholder_text = "Nombre del ajuste preestablecido"
+virtual_keyboard_enabled = false
+virtual_keyboard_show_on_focus = false
+clear_button_enabled = true
+shortcut_keys_enabled = false
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin/Panels/RightPanel/Data"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="Items" type="VBoxContainer" parent="Margin/Panels/RightPanel/Data/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="Template" type="HBoxContainer" parent="Margin/Panels/RightPanel/Data/ScrollContainer/Items"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Margin/Panels/RightPanel/Data/ScrollContainer/Items/Template"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Title"
+label_settings = SubResource("LabelSettings_g4dge")
+
+[node name="Info" type="Label" parent="Margin/Panels/RightPanel/Data/ScrollContainer/Items/Template"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Null"
+label_settings = SubResource("LabelSettings_f7nbw")
+
+[node name="Create" type="Button" parent="Margin/Panels/RightPanel/Data"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_p0ar5")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_us64h")
+theme_override_styles/focus = SubResource("StyleBoxFlat_us64h")
+text = "Create"
+icon_alignment = 2

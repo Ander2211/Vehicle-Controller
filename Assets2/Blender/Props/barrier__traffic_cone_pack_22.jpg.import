@@ -1,0 +1,44 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://d2ny13wtwmrfe"
+path.s3tc="res://.godot/imported/barrier__traffic_cone_pack_22.jpg-0fa29f5b664f617808fda34c59cb7158.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "a5fdb3b305c9f0e31a07b88d22d7d888"
+}
+
+[deps]
+
+source_file="res://Assets2/Blender/Props/barrier__traffic_cone_pack_22.jpg"
+dest_files=["res://.godot/imported/barrier__traffic_cone_pack_22.jpg-0fa29f5b664f617808fda34c59cb7158.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://Assets/Blender/Props/barrier__traffic_cone_pack_22.jpg"
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
